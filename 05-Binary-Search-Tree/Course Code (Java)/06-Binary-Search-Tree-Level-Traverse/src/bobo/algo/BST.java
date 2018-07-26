@@ -1,6 +1,7 @@
 package bobo.algo;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 // 二分搜索树
 // 由于Key需要能够进行比较，所以需要extends Comparable<Key>
@@ -72,7 +73,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     public void levelOrder(){
 
         // 我们使用LinkedList来作为我们的队列
-        LinkedList<Node> q = new LinkedList<Node>();
+        Queue<Node> q = new LinkedList<Node>();
         q.add(root);
         while( !q.isEmpty() ){
 
@@ -185,7 +186,7 @@ public class BST<Key extends Comparable<Key>, Value> {
             int pos = (int) (Math.random() * (i+1));
             Integer t = arr[pos];
             arr[pos] = arr[i];
-            arr[i] = arr[pos];
+            arr[i] = t;
         }
         // 由于我们实现的二分搜索树不是平衡二叉树，
         // 所以如果按照顺序插入一组数据，我们的二分搜索树会退化成为一个链表
@@ -206,7 +207,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         for(int i = 0 ; i < 2*N ; i ++){
             String res = bst.search(new Integer(i));
             if( i < N )
-                assert res == Integer.toString(i);
+                assert res.equals(Integer.toString(i));
             else
                 assert res == null;
         }
